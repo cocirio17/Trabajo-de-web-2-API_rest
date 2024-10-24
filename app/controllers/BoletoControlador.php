@@ -64,13 +64,22 @@ class BoletoControlador{
             !isset($req->body->precio) || empty($req->body->precio)){
             return $this->vista->response('Faltan completar datos', 400);
         }
-        if(is_int($req->body->precio)){
-            $precio = $req->body->precio;
-        }
-        $destino_inicio = $req->body->destino_inicio;       
-        $destino_fin = $req->body->destino_fin;       
-        $fecha_salida = $req->body->fecha_salida;
         
+        $feccha_obje = DateTime :: createFromFormat('Y-m-d', $req->body->fecha_salida);
+
+        if($feccha_obje && $feccha_obje->format('Y-m-d') === $req->body->fecha_salida ){
+            $fecha_salida = $req->body->fecha_salida;
+        }else{
+            return $this->vista->response('La fecha no es correcta', 400);
+        }
+        if(is_numeric($req->body->precio)){
+            $precio = $req->body->precio;
+        }else{
+            return $this->vista->response('No es un precio correcto', 400);
+        }
+
+        $destino_inicio = $req->body->destino_inicio;       
+        $destino_fin = $req->body->destino_fin;   
 
         $this->modelo->editarBoleto($id, $destino_inicio, $destino_fin, $fecha_salida, $precio);
 

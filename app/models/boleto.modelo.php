@@ -57,7 +57,7 @@ class BoletoModelo {
     }
 
     public function borrarBoleto($id) {
-        $query = $this->db->prepare('DELETE FROM boleto WHERE id = ?');
+        $query = $this->db->prepare('DELETE FROM boleto WHERE id_boleto = ?');
         $query->execute([$id]);
     }
 
