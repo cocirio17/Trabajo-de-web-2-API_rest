@@ -3,7 +3,7 @@
 ---
 
 ### Integrantes  
-- **Francisco Cocirio**  
+- **Cocirio Francisco**  
 - **Beheran Bazterrechea Felipe Tomás**
 
 ---
