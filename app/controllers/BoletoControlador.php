@@ -81,7 +81,7 @@ class BoletoControlador{
         $destino_inicio = $req->body->destino_inicio;       
         $destino_fin = $req->body->destino_fin;   
 
-        $this->modelo->editarBoleto($id, $destino_inicio, $destino_fin, $fecha_salida, $precio);
+        $this->modelo->editarBoleto($id, $destino_inicio, $destino_fin, $fecha_salida , $precio);
 
         $boleto = $this->modelo->traerBoleto($id);
         $this->vista->response($boleto, 200);

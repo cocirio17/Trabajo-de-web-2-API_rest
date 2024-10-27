@@ -14,7 +14,7 @@ class BoletoModelo {
     
             switch ($orderBy) {
                 case 'precio':
-                    $sql .= ' precio '; // Espacio después de 'precio'
+                    $sql .= ' precio ';
                     break;
                 case 'fecha':
                     $sql .= ' fecha_salida ';
@@ -26,6 +26,7 @@ class BoletoModelo {
                     $sql .= ' destino_fin ';
                     break;
                 default:
+                    $sql .= ' id_boleto ';
                     break;
             }
     
@@ -35,10 +36,7 @@ class BoletoModelo {
                 $sql .= ' ASC';  
             }
             
-        }
-        
-        
-        
+        }        
         $query = $this->db->prepare($sql);
         $query->execute();
 
