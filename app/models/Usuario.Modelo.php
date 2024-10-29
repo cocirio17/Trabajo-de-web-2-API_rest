@@ -5,7 +5,7 @@ class UsuarioModelo {
     public function __construct(){
         $this->db = new PDO('mysql:host=localhost;dbname=coletivo;charset=utf8', 'root', '');        
     }
-    public function usaurioNombre ($nombre){
+    public function usuarioNombre ($nombre){
         $query = $this->db->prepare("SELECT * FROM usuarios WHERE usuario = ?");  
         $query->execute([$nombre]);
         $usuario = $query->fetch(PDO::FETCH_OBJ);

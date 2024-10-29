@@ -29,6 +29,11 @@ class BoletoControlador{
 
     // api/boleto/:id
     public function mostrarBoleto($req, $res) {
+        
+        if(!$res->usa) {
+            return $this->vista->response("No autorizado", 401);
+        }
+
         $id = $req->params->id;
         $boleto = $this->modelo->traerBoleto($id);
         if(!$boleto) {
@@ -39,6 +44,11 @@ class BoletoControlador{
 
     // api/boleto/:id
     public function borrarBoleto ($req, $res){
+        
+        if(!$res->usa) {
+            return $this->vista->response("No autorizado", 401);
+        }
+        
         $id = $req->params->id;
 
         $boleto = $this->modelo->traerboleto($id);
@@ -51,6 +61,11 @@ class BoletoControlador{
     }
     // api/boleto/:id
     public function editarBoleto ($req, $res){
+        
+        if(!$res->usa) {
+            return $this->vista->response("No autorizado", 401);
+        }
+
         $id = $req->params->id;
         // verifico que exista
         $boleto = $this->modelo->traerBoleto($id);
