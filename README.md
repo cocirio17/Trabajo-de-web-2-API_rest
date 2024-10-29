@@ -72,7 +72,7 @@ Este proyecto tiene como objetivo la **comercialización de viajes en colectivos
 
 ---
 
-### 🌐 Autenticación
+### 🔐 Autenticación
 
 Para acceder a recursos protegidos, los usuarios deben autenticarse utilizando un **token**. 
 
