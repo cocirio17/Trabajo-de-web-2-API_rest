@@ -79,7 +79,7 @@ Para acceder a recursos protegidos, los usuarios deben autenticarse utilizando u
 - **POST** `/usuarios/token`  
   Este endpoint permite a los usuarios obtener un token JWT. Para utilizarlo, se deben enviar las credenciales en el encabezado de la solicitud en formato Base64 (usuario:contraseña).
 
-  - **iniciar sesión"**:  
+  - **iniciar sesión**:  
     - **Nombre de usuario**: `webadmin`  
     - **Contraseña**: `admin`
 
