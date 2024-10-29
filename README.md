@@ -72,6 +72,22 @@ Este proyecto tiene como objetivo la **comercialización de viajes en colectivos
 
 ---
 
+### 🌐 Autenticación
+
+Para acceder a recursos protegidos, los usuarios deben autenticarse utilizando un **token**. 
+
+- **POST** `/usuarios/token`  
+  Este endpoint permite a los usuarios obtener un token JWT. Para utilizarlo, se deben enviar las credenciales en el encabezado de la solicitud en formato Base64 (usuario:contraseña).
+
+  - **Ejemplo de uso**: 
+    - Encabezado de solicitud:  
+      `Authorization: Basic <base64(usuario:contraseña)>`
+  
+  - **Respuesta**:  
+    Si las credenciales son válidas, se devuelve un token JWT que puede ser utilizado para autenticar futuras solicitudes a la API.
+
+---
+
 ### 🌐 Estructura del Proyecto
 
 Este proyecto cuenta con una API REST que permite la consulta, modificación, eliminación e inserción de boletos para viajes en colectivos de larga distancia. El diseño está orientado a facilitar la **comercialización de boletos** y **gestión de pasajeros**.
