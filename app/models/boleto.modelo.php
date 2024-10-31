@@ -26,7 +26,8 @@ class BoletoModelo {
                     $sql .= ' destino_fin ';
                     break;
                 default:
-                    $sql .= ' id_boleto ';
+                    // $sql .= ' id_boleto ';
+                    return ('el campo no existe');
                     break;
             }
     

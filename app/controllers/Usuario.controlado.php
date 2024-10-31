@@ -46,12 +46,13 @@ class UsuarioController{
             'email' => $usuario->usuario,
             'role' => 'admin',
             'iat' => time(),
-            'exp' => time() + 10,
-            'Saludo' => 'web',
+            'exp' => time() + 60,
+            'Saludo' => 'laweb',
         ));
         $this->vistas->response("seccion iniciada con exito", 200);
         return $this->vistas->response($token, 200);
     
     }
+
 
 }

@@ -1,6 +1,6 @@
 <?php
 class Autenticar{
-    public function run($eq, $res){
+    public function run($req, $res){
 
         $autenticar = $_SERVER['HTTP_AUTHORIZATION'];
         $autenticar = explode(' ', $autenticar);
@@ -11,6 +11,6 @@ class Autenticar{
         if ($autenticar[0] != 'Bearer'){
             return;
         }
-        $res->usuario = validateJWT($autenticar[1]);
+        $res->user = validateJWT($autenticar[1]);
     }
 }
