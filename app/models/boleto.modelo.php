@@ -45,15 +45,6 @@ class BoletoModelo {
         return $boleto;
     }
 
-    public function traerBoleto($id){
-        $query = $this->db->prepare('SELECT * FROM boleto WHERE id_boleto = ?');
-        $query->execute([$id]);   
-    
-        $boleto = $query->fetch(PDO::FETCH_OBJ);
-    
-        return $boleto;
-
-    }
 
     public function borrarBoleto($id) {
         $query = $this->db->prepare('DELETE FROM boleto WHERE id_boleto = ?');

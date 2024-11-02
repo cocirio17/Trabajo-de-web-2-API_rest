@@ -28,23 +28,6 @@ class BoletoControlador{
     }
 
     // api/boleto/:id
-    public function mostrarBoleto($req, $res) {
-        var_dump($res->user); // NULL
-
-        // var_dump($res->usuario); // ERRROR 
-
-        
-        if(!$res->user) {
-            return $this->vista->response("No autorizado", 401);
-        }
-
-        $id = $req->params->id;
-        $boleto = $this->modelo->traerBoleto($id);
-        if(!$boleto) {
-            return $this->vista->response("La tarea con el id=$id no existe", 404);
-        }
-        return $this->vista->response($boleto);
-    }
 
     // api/boleto/:id
     public function borrarBoleto ($req, $res){
