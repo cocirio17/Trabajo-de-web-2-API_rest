@@ -27,15 +27,47 @@ Este proyecto tiene como objetivo la **comercialización de viajes en colectivos
 ### 🎫 Boletos
 
 - **GET** `/api/boleto`  
-  Devuelve todos los boletos disponibles.
+  Devuelve todos los boletos disponibles en la base de datos, permitiendo opcionalmente aplicar filtrado y ordenamiento a los resultados.
+
+  - **Descripción**:  
+    Esta endpoint permite a los usuarios recuperar una lista de boletos disponibles, con opciones para filtrar y ordenar los resultados por diferentes campos.
 
   - **Query Params**:  
-    - `orderBy`: Campo por el que se desea ordenar (e.g., `precio`).  
-    - `orderDirection`: Dirección de orden (`ASC` o `DESC`).
-
-  - **Ejemplo**:  
-    `/api/boleto?orderBy=precio&orderDirection=DESC`
+    - **Ordenamiento**:  
+      - `orderBy`: Campo por el que se desea ordenar los resultados. Los campos válidos pueden incluir:
+        - `precio`: Ordena los boletos por precio.
+        - `destino_inicio`: Ordena los boletos por el destino de inicio.
+        - `destino_fin`: Ordena los boletos por el destino final.
+      
+      - `orderDirection`: Dirección de orden para el campo especificado en `orderBy`. Puede ser:
+        - `ASC`: Orden ascendente (por defecto).
+        - `DESC`: Orden descendente.
   
+      **Ejemplo de Ordenamiento**:  
+      Para obtener todos los boletos ordenados por precio en orden descendente:
+      ```http
+      GET /api/boleto?orderBy=precio&orderDirection=DESC
+      ```
+
+    - **Filtrado**:  
+      - `filtrado`: Campo por el que se desea filtrar los resultados. Los campos válidos pueden incluir:
+        - `destino_inicio`: Filtra los boletos por el destino de inicio.
+        - `destino_fin`: Filtra los boletos por el destino final.
+        - `precio`: Filtra los boletos por precio.
+
+      - `filtradoDireccion`: Dirección de comparación para el campo especificado en `filtrado`. Puede ser:
+        - `>`: Mayor que.
+        - `<`: Menor que.
+        - `=`: Igual a.
+
+      - `cantidad`: Valor que se utilizará para el filtrado. Debe ser el valor específico que se comparará con el campo filtrado.
+
+      **Ejemplo de Filtrado**:  
+      Para obtener todos los boletos cuyo destino de inicio sea mayor que "Córdoba":
+      ```http
+      GET /api/boleto?filtrado=destino_inicio&filtradoDireccion=>&cantidad=Córdoba
+      ```
+
 ---
 
 - **GET** `/api/boleto/:ID`  
