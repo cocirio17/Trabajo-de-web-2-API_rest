@@ -38,6 +38,7 @@ Este proyecto tiene como objetivo la **comercialización de viajes en colectivos
         - `precio`: Ordena los boletos por precio.
         - `destino_inicio`: Ordena los boletos por el destino de inicio.
         - `destino_fin`: Ordena los boletos por el destino final.
+        - `fecha_salida`: Ordena los boletos por la fecha de salida.
       
       - `orderDirection`: Dirección de orden para el campo especificado en `orderBy`. Puede ser:
         - `ASC`: Orden ascendente (por defecto).
