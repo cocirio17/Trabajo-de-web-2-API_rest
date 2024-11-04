@@ -63,9 +63,9 @@ Este proyecto tiene como objetivo la **comercialización de viajes en colectivos
       - `cantidad`: Valor que se utilizará para el filtrado. Debe ser el valor específico que se comparará con el campo filtrado.
 
       **Ejemplo de Filtrado**:  
-      Para obtener todos los boletos cuyo destino de inicio sea mayor que "Córdoba":
+      Para obtener todos los boletos cuyo precio sea mayor que 7000:
       ```http
-      GET /api/boleto?filtrado=destino_inicio&filtradoDireccion=>&cantidad=Córdoba
+      GET /api/boleto?filtrado=precio&filtradoDireccion=>&cantidad=7000
       ```
 
 ---
