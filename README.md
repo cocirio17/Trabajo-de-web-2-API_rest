@@ -1,4 +1,8 @@
-# ✈️ Proyecto: Comercialización de Viajes de Larga Distancia
+<p align="center">
+  <img src="https://cdn.pixabay.com/animation/2023/06/13/15/12/15-12-44-718_512.gif" alt="Descripción del GIF" width="300">
+</p>
+
+### ✈️ Proyecto: Comercialización de Viajes de Larga Distancia
 
 ---
 
