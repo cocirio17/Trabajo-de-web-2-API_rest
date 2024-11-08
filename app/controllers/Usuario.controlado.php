@@ -46,7 +46,7 @@ class UsuarioController{
             'email' => $usuario->usuario,
             'role' => 'admin',
             'iat' => time(),
-            'exp' => time() + 60,
+            'exp' => time() + 3600,
             'Saludo' => 'laweb',
         ));
         $this->vistas->response("seccion iniciada con exito", 200);

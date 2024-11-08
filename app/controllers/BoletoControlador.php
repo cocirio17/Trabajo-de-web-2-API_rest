@@ -15,17 +15,15 @@ class BoletoControlador{
         $orderBy = null;
         $orderDirection = null;
         $filtrado = null;
-        $filtradoDirecion = null;
-        $cantidad = null;
-
+        $valor = null;
+        $pagina = null; // si no tine nada traigo todos, verifico si es numero
+        $limite = null; // si vine pagina le doy un valor por defecto, verifico si es nuemro 
+        
         if(isset($req->query->filtro)){
             $filtrado = $req->query->filtro;
         }
-        if(isset($req->query->filtraodDirecion)){
-            $filtradoDirecion = $req->query->filtraodDirecion;
-        }
-        if(isset($req->query->cantidad)){
-            $cantidad = $req->query->cantidad;
+        if(isset($req->query->valor)){
+            $valor = $req->query->valor;
         }
         
         if(isset($req->query->orderBy)){
@@ -34,25 +32,32 @@ class BoletoControlador{
         if(isset($req->query->orderDirection)){
             $orderDirection =$req->query->orderDirection;
         }
-
-        $boleto = $this->modelo->traerBoletos($orderBy, $orderDirection, $filtrado, $filtradoDirecion, $cantidad);
-
+        if(isset($req->query->pagina) && is_numeric($req->query->pagina) ){
+            $pagina= $req->query->pagina;            
+        }
+        if(isset($req->query->limite) && is_numeric($req->query->limite)){
+            $limite = $req->query->limite;
+        }
+        if($limite == null && $pagina !== null){
+            $limite = 5;
+        } else {
+            $limite = (int) $limite;
+        }
+        
+        $boleto = $this->modelo->traerBoletos($orderBy, $orderDirection, $filtrado, $valor, $limite, $pagina);
         if($boleto == null){
-            return $this->vista->response('no hay boletos con esas especificaciones');
+            return $this->vista->response('no hay boletos con esas especificaciones', 404);
         }
 
         return $this->vista->response($boleto);
     }
 
     // api/boleto/:id
-    public function mostrarBoleto($req, $res) {        
-        if(!$res->user) {
-            return $this->vista->response("No autorizado", 401);
-        }
+    public function mostrarBoleto($req, $res) {
         $id = $req->params->id;
         $boleto = $this->modelo->traerBoleto($id);
         if(!$boleto) {
-            return $this->vista->response("La tarea con el id=$id no existe", 404);
+            return $this->vista->response("El boleto con el id=$id no existe", 404);
         }
         return $this->vista->response($boleto);
     }
@@ -106,7 +111,7 @@ class BoletoControlador{
             $this->vista->response('no se encontro el boleto', 404);
         }
         $this->modelo->borrarBoleto($id);
-        $this->vista->response('se a borrado el boleto con id=$id', 200 );
+        $this->vista->response("se a borrado el boleto con id=$id", 200 );
     }
     // api/boleto/:id
     public function editarBoleto ($req, $res){

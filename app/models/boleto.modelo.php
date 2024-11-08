@@ -6,55 +6,16 @@ class BoletoModelo {
         $this->db = new PDO('mysql:host=localhost;dbname=coletivo;charset=utf8', 'root', '');        
     }
 
-    public function traerBoletos($orderBy = false , $orderDirection = ' ASC ', $filtrado = false, $filtradoDireccion = '=', $cantidad = 0){
+    public function traerBoletos($orderBy = false , $orderDirection = ' ASC ', $filtrado = null, $valor = null, $limite = null, $pagina = null){
         $sql = 'SELECT * FROM boleto';
     
-
-        if ($filtrado && $cantidad !== null) {
-            $sql .= ' WHERE ';
-            switch ($filtrado){
-                case 'destino-inicio':
-                        if ($filtradoDireccion == '>') {
-                            $sql .= ' destino_inicio > ?';
-                        } 
-                        elseif ($filtradoDireccion == '<') {
-                            $sql .= ' destino_inicio < ? ';
-                        } 
-                        else {
-                            $sql .= ' destino_inicio = ?';
-                        }
-                    break;
-                
-                case 'destino-fin':
-                        if ($filtradoDireccion == '>') {
-                            $sql .= 'destino_fin > ?';
-                        }
-                        elseif ($filtradoDireccion == '<') {
-                            $sql .= ' destino_fin < ?';
-                        }
-                        else {
-                            $sql .= ' destino_fin = ?';
-                        }
-                    break;
-                case 'precio':
-                        if ($filtradoDireccion == '>') {
-                            $sql .= ' precio > ?';
-                        }
-                        elseif ($filtradoDireccion == '<') {
-                            $sql .= ' precio < ?';
-                        }
-                        else {
-                            $sql .= ' precio = ?';
-                        }
-                    break;
-                default:
-                    return ('el campo que etsa filtrando no existe');        
-                    break;
-                    
-            }
+        // filtro
+        if($filtrado == 'precio' || $filtrado == 'destino_inicio' || $filtrado == 'destino_fin' || $filtrado == 'fecha_salida'){
+            $sql .= ' WHERE ' . $filtrado . ' = ? ';
         }
-        
 
+        
+        //ordenamineto 
         if ($orderBy) {
             $sql .= ' ORDER BY ';     
             switch ($orderBy) {
@@ -75,17 +36,30 @@ class BoletoModelo {
                     return ('el campo no existe');
                     break;
             }
-    
+            // direcion del orden
             if ($orderDirection === 'DESC') {
                 $sql .= ' DESC';  
             } else {
                 $sql .= ' ASC';  
-            }
-            
-        } 
-              
+            }            
+        }
+
+        if($pagina !== null){
+            $paginacion = ($pagina - 1) * $limite;
+
+            $paginacion = (int) $paginacion;
+            $sql .= ' LIMIT ' . $limite;
+            $sql .= ' OFFSET ' . $paginacion;
+        }
+        
+        // Preparar la consulta
         $query = $this->db->prepare($sql);
-        $query->execute([$cantidad]);
+    
+        if ($valor !== null ||  $filtrado !== null) {
+            $query->execute([$valor]);
+        }else{        
+            $query->execute([]);
+        }
 
         $boleto = $query->fetchAll(PDO::FETCH_OBJ);
         return $boleto;
