@@ -54,7 +54,7 @@ Este proyecto tiene como objetivo la **comercialización de viajes en colectivos
       GET /api/boleto?orderBy=precio&orderDirection=DESC
       ```
 
-    - **Filtrado**:  
+    - **Filtro**:  
       - `filtrado`: Campo por el que se desea filtrar los resultados. Los campos válidos pueden incluir:
         - `destino_inicio`: Filtra los boletos por el destino de inicio.
         - `destino_fin`: Filtra los boletos por el destino final.
@@ -64,15 +64,15 @@ Este proyecto tiene como objetivo la **comercialización de viajes en colectivos
       - `valor`: Valor que se utilizará para el filtrado. Debe ser el valor específico que se comparará con el campo filtrado.
 
       **Ejemplo de Filtrado**:  
-      Para obtener todos los boletos cuyo precio sea mayor que 7000:
+      Para obtener todos los boletos cuyo precio sea igual a 7000:
       ```http
-      GET /api/boleto?filtrado=preci&valor=7000
+      GET /api/boleto?filtro=precio&valor=7000
       ```
     - **Paginación**:  
       La **paginación** permite dividir los resultados en páginas más pequeñas, mejorando la experiencia del usuario y optimizando el rendimiento de la aplicación.
 
-      - **`pagina`**: Número de la página solicitada. Si no se especifica, se muestran todos los resultados.
-      - **`limite`**: Número de registros por página. Si `$pagina` no tiene un valor, se aplica un límite por defecto que va a ser 5.
+      - `pagina`: Número de la página solicitada. Si no se especifica, se muestran todos los Boletos.
+      - limite`: Número de Boletos por página. Si este no tiene un valor, se aplica un límite por defecto que va a ser 5.
 
       **Ejemplo de solicitud**:  
       Para obtener los boletos de la página 2 con 10 resultados por página:
