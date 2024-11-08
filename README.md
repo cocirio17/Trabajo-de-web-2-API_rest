@@ -1,4 +1,8 @@
-# ✈️ Proyecto: Comercialización de Viajes de Larga Distancia
+<p align="center">
+  <img src="https://cdn.pixabay.com/animation/2023/06/13/15/12/15-12-44-718_512.gif" alt="Descripción del GIF" width="300">
+</p>
+
+### ✈️ Proyecto: Comercialización de Viajes de Larga Distancia
 
 ---
 
@@ -38,6 +42,7 @@ Este proyecto tiene como objetivo la **comercialización de viajes en colectivos
         - `precio`: Ordena los boletos por precio.
         - `destino_inicio`: Ordena los boletos por el destino de inicio.
         - `destino_fin`: Ordena los boletos por el destino final.
+        - `fecha`: Ordena los boletos por la fecha de salida.
       
       - `orderDirection`: Dirección de orden para el campo especificado en `orderBy`. Puede ser:
         - `ASC`: Orden ascendente (por defecto).
@@ -49,24 +54,32 @@ Este proyecto tiene como objetivo la **comercialización de viajes en colectivos
       GET /api/boleto?orderBy=precio&orderDirection=DESC
       ```
 
-    - **Filtrado**:  
+    - **Filtro**:  
       - `filtrado`: Campo por el que se desea filtrar los resultados. Los campos válidos pueden incluir:
         - `destino_inicio`: Filtra los boletos por el destino de inicio.
         - `destino_fin`: Filtra los boletos por el destino final.
         - `precio`: Filtra los boletos por precio.
+        - `fecha_salida`: Filtra las boletos por las fechas.
 
-      - `filtradoDireccion`: Dirección de comparación para el campo especificado en `filtrado`. Puede ser:
-        - `>`: Mayor que.
-        - `<`: Menor que.
-        - `=`: Igual a.
-
-      - `cantidad`: Valor que se utilizará para el filtrado. Debe ser el valor específico que se comparará con el campo filtrado.
+      - `valor`: Valor que se utilizará para el filtrado. Debe ser el valor específico que se comparará con el campo filtrado.
 
       **Ejemplo de Filtrado**:  
-      Para obtener todos los boletos cuyo precio sea mayor que 7000:
+      Para obtener todos los boletos cuyo precio sea igual a 7000:
       ```http
-      GET /api/boleto?filtrado=precio&filtradoDireccion=>&cantidad=7000
+      GET /api/boleto?filtro=precio&valor=7000
       ```
+    - **Paginación**:  
+      La **paginación** permite dividir los resultados en páginas más pequeñas, mejorando la experiencia del usuario y optimizando el rendimiento de la aplicación.
+
+      - `pagina`: Número de la página solicitada. Si no se especifica, se muestran todos los Boletos.
+      - limite`: Número de Boletos por página. Si este no tiene un valor, se aplica un límite por defecto que va a ser 5.
+
+      **Ejemplo de solicitud**:  
+      Para obtener los boletos de la página 2 con 10 resultados por página:
+      ```http
+      GET /api/boleto?pagina=2&limite=10
+      ```
+      
 
 ---
 
