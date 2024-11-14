@@ -56,7 +56,7 @@ class BoletoModelo {
             $sql .= ' LIMIT ' . $limite;
             $sql .= ' OFFSET ' . $paginacion;
         }
-        echo($sql);
+        
         // Preparar la consulta
         $query = $this->db->prepare($sql);
     
