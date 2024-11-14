@@ -14,10 +14,11 @@ class BoletoModelo {
             $sql .= ' WHERE ' . $filtrado . ' = ? ';
         }
 
+        $sql .= ' ORDER BY ';  
         
         //ordenamineto 
         if ($orderBy) {
-            $sql .= ' ORDER BY ';     
+               
             switch ($orderBy) {
                 case 'precio':
                     $sql .= ' precio ';
@@ -32,17 +33,21 @@ class BoletoModelo {
                     $sql .= ' destino_fin ';
                     break;
                 default:
-                    // $sql .= ' id_boleto ';
-                    return ('el campo no existe');
+                    
                     break;
             }
-            // direcion del orden
-            if ($orderDirection === 'DESC') {
+           
+        }
+        else{
+            $sql .= ' id_boleto ';
+        }
+        // direcion del orden
+        if ($orderDirection === 'DESC') {
                 $sql .= ' DESC';  
             } else {
                 $sql .= ' ASC';  
-            }            
-        }
+            } 
+
 
         if($pagina !== null){
             $paginacion = ($pagina - 1) * $limite;
@@ -51,7 +56,7 @@ class BoletoModelo {
             $sql .= ' LIMIT ' . $limite;
             $sql .= ' OFFSET ' . $paginacion;
         }
-        
+        echo($sql);
         // Preparar la consulta
         $query = $this->db->prepare($sql);
     

@@ -43,6 +43,7 @@ Este proyecto tiene como objetivo la **comercialización de viajes en colectivos
         - `destino_inicio`: Ordena los boletos por el destino de inicio.
         - `destino_fin`: Ordena los boletos por el destino final.
         - `fecha`: Ordena los boletos por la fecha de salida.
+        - `id_boleto`: Ordena los boletos por su id (por defecto).
       
       - `orderDirection`: Dirección de orden para el campo especificado en `orderBy`. Puede ser:
         - `ASC`: Orden ascendente (por defecto).
@@ -72,7 +73,7 @@ Este proyecto tiene como objetivo la **comercialización de viajes en colectivos
       La **paginación** permite dividir los resultados en páginas más pequeñas, mejorando la experiencia del usuario y optimizando el rendimiento de la aplicación.
 
       - `pagina`: Número de la página solicitada. Si no se especifica, se muestran todos los Boletos.
-      - limite`: Número de Boletos por página. Si este no tiene un valor, se aplica un límite por defecto que va a ser 5.
+      - `limite`: Número de Boletos por página. Si este no tiene un valor, se aplica un límite por defecto que va a ser 5.
 
       **Ejemplo de solicitud**:  
       Para obtener los boletos de la página 2 con 10 resultados por página:

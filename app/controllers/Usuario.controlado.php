@@ -47,7 +47,7 @@ class UsuarioController{
             'role' => 'admin',
             'iat' => time(),
             'exp' => time() + 3600,
-            'Saludo' => 'laweb',
+            'Saludo' => 'viaExpres',
         ));
         $this->vistas->response("seccion iniciada con exito", 200);
         return $this->vistas->response($token, 200);
